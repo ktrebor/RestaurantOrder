@@ -1,6 +1,7 @@
 import { menuArray } from "./data.js"
 
 let orderEl = document.getElementById('order')
+let totalEl = document.getElementById('total-price')
 
 document.addEventListener('click', function(e){
     if (e.target.dataset.addButton) {
@@ -25,9 +26,24 @@ function handleAddProduct(productId) {
     getOrders()
 }
 
+function getTotalPrice() {
+    const totalPrice = orderArray.reduce((acc, item) => acc + item.price * item.quantity, 0)
+
+    renderTotalPrice(totalPrice)
+}
+
+function renderTotalPrice(totalPrice) {
+    totalEl.classList.remove('hidden')
+    let totalPriceEl = `
+        <p class="total-price">Total price: </p>
+        <p class="product-price">${totalPrice} $</p>
+    `
+    totalEl.innerHTML = totalPriceEl
+
+}
+
 function getOrders() {
     let orders = ''
-    console.log(orderArray)
     orderArray.forEach(function(order){
         orders += `
             <div class="product-order">
@@ -36,7 +52,13 @@ function getOrders() {
             </div> 
         `
     }) 
-    return orders 
+    renderOrders(orders)
+    getTotalPrice()
+}
+
+function renderOrders(orders){
+    document.getElementById('order-details').classList.remove('hidden')
+    orderEl.innerHTML = orders
 }
 
 function getProducts() {
