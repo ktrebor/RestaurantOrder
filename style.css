@@ -96,7 +96,6 @@ button {
 }
 
 .total-price {
-    border-top: 2px solid #393333;
     padding-top: 10px;
 }
 
@@ -111,4 +110,12 @@ button {
 
 .hidden {
     display: none;
+}
+
+.remove-product {
+    cursor: pointer;
+    margin-left: 50px;
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #BBBBBB;
 }

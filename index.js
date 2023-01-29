@@ -6,8 +6,23 @@ let totalEl = document.getElementById('total-price')
 document.addEventListener('click', function(e){
     if (e.target.dataset.addButton) {
         handleAddProduct(e.target.dataset.addButton)
+    } else if (e.target.dataset.remove) {
+        removeProductFromOrder(e.target.dataset.remove)
     }
 })
+
+function removeProductFromOrder(productId) {
+    let removeEl = document.getElementById(`product-${productId}`)
+    removeEl.parentNode.removeChild(removeEl)
+    productId = Number(productId)
+    const targetProductObj = orderArray.filter(function(order){
+        return order.id === productId
+    })[0]
+    if(orderArray.includes(targetProductObj)) {
+        targetProductObj.quantity = 0
+        getTotalPrice()
+    }
+}
 
 let orderArray = []
 
@@ -39,15 +54,17 @@ function renderTotalPrice(totalPrice) {
         <p class="product-price">${totalPrice} $</p>
     `
     totalEl.innerHTML = totalPriceEl
-
 }
 
 function getOrders() {
     let orders = ''
     orderArray.forEach(function(order){
         orders += `
-            <div class="product-order">
-                <p class="product-title">${order.name} <span>x ${order.quantity}</span> <span data-remove="${order.id}">remove</span></p>
+            <div id="product-${order.id}" class="product-order">
+                <p class="product-title">${order.name} 
+                    <span>x${order.quantity}</span> 
+                    <span class="remove-product" data-remove="${order.id}">remove</span>
+                </p>
                 <p class="product-price">${order.price * order.quantity}$</p>
             </div> 
         `
