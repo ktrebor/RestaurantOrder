@@ -8,20 +8,31 @@ document.addEventListener('click', function(e){
         handleAddProduct(e.target.dataset.addButton)
     } else if (e.target.dataset.remove) {
         removeProductFromOrder(e.target.dataset.remove)
+    } else if (e.target.id === "confirm-order") {
+        handleCompleteOrder()
     }
 })
+
+function handleCompleteOrder(e) {
+    let modalEl = document.getElementById('modal-inner')
+    modalEl.style.display = "flex"
+
+    document.getElementById('main').style.opacity = 0.3
+}
 
 function removeProductFromOrder(productId) {
     let removeEl = document.getElementById(`product-${productId}`)
     removeEl.parentNode.removeChild(removeEl)
+    
     productId = Number(productId)
     const targetProductObj = orderArray.filter(function(order){
         return order.id === productId
     })[0]
+
     if(orderArray.includes(targetProductObj)) {
         targetProductObj.quantity = 0
-        getTotalPrice()
     }
+    getTotalPrice()
 }
 
 let orderArray = []

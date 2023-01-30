@@ -37,6 +37,13 @@ h3 {
     font-size: 28px;
 }
 
+input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    height: 50px;
+    padding: 20px;
+}
+
 /* product styling */
 
 .product {
@@ -99,7 +106,8 @@ button {
     padding-top: 10px;
 }
 
-.confirm-btn {
+.confirm-btn, 
+.modal-btn {
     background-color: #16DB99;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -118,4 +126,36 @@ button {
     font-size: 12px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #BBBBBB;
+}
+
+/* payment modal */
+
+.modal-inner {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 20px;
+    height: 420px;
+    width: 350px; 
+    background-color: white;
+    box-shadow: 5px 5px 255px rgba(0, 0, 0, 0.5);
+}
+
+.modal-inner > h2 {
+    font-family: sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
 }
