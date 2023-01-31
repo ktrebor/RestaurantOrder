@@ -1,7 +1,10 @@
 import { menuArray } from "./data.js"
 
-let orderEl = document.getElementById('order')
-let totalEl = document.getElementById('total-price')
+const orderEl = document.getElementById('order')
+const totalEl = document.getElementById('total-price')
+const paymentFormEl = document.getElementById('payment-form')
+const orderDetails = document.getElementById('order-details')
+const modalEl = document.getElementById('modal-inner')
 
 document.addEventListener('click', function(e){
     if (e.target.dataset.addButton) {
@@ -13,10 +16,24 @@ document.addEventListener('click', function(e){
     }
 })
 
-function handleCompleteOrder(e) {
-    let modalEl = document.getElementById('modal-inner')
-    modalEl.style.display = "flex"
+paymentFormEl.addEventListener('submit', function (e){
+    e.preventDefault()
+    const paymentFormData = new FormData(paymentFormEl)
+    const fullName = paymentFormData.get('fullName')
 
+    orderDetails.innerHTML = `
+        <div class="order-note">
+            <p> Thanks, ${fullName}! Your order is on its way!</p>
+        </div>
+    `
+    modalEl.style.display = "none"
+    document.getElementById('main').style.opacity = 1
+
+})
+ 
+
+function handleCompleteOrder() {
+    modalEl.style.display = "flex"
     document.getElementById('main').style.opacity = 0.3
 }
 
@@ -85,7 +102,7 @@ function getOrders() {
 }
 
 function renderOrders(orders){
-    document.getElementById('order-details').classList.remove('hidden')
+    orderDetails.classList.remove('hidden')
     orderEl.innerHTML = orders
 }
 

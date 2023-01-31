@@ -50,7 +50,7 @@ input {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid grey;
-    padding: 40px 0;
+    padding: 20px 0;
 }
 
 .product-emoji {
@@ -94,7 +94,7 @@ button {
 
 .order-details > h3 {
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 
 .product-order {
@@ -102,8 +102,16 @@ button {
     justify-content: space-between;
 }
 
+.product-order {
+    font-size: 28px;
+}
+
 .total-price {
-    padding-top: 10px;
+    padding-top: 0px;
+}
+
+.total-price > p {
+    font-size: 28px;
 }
 
 .confirm-btn, 
@@ -158,4 +166,17 @@ button {
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
+}
+
+/* order note */
+.order-note {
+    background-color: #ECFDF5;
+    padding: 60px;
+    text-align: center;
+}
+
+.order-note > p {
+    font-size: 32px;
+    color: #065F46;
+    
 }
